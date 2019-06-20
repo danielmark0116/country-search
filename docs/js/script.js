@@ -28,6 +28,10 @@ function countryComponent(countryName = 'test') {
       population: population,
       region: region,
       timezones: timezones,
+      // linkPrefix - fix for GITHUB href value if repo not hosted as main account githubpages
+      linkPrefix: /github.io/i.test(window.location.href)
+        ? 'country-search/'
+        : '',
       wiki: `https://en.wikipedia.org/wiki/${name}`
     });
 
@@ -44,6 +48,10 @@ function getCountry(param) {
       console.log(err);
     });
 }
+
+// GITHUB link fix
+
+console.log(/github.io/i.test(window.location.href));
 
 document.addEventListener('DOMContentLoaded', function() {
   const url = window.location.href;
