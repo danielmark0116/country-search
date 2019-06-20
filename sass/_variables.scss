@@ -12,4 +12,6 @@ body {
 
 main {
   overflow-x: hidden;
+  overflow-y: visible;
+  min-height: 300px;
 }

@@ -15,11 +15,6 @@ function countryComponent(countryName = 'test') {
 
   getCountry(countryName).then(function(data) {
     const { name, flag, timezones, population, capital, region } = data[0];
-    console.log(name);
-    console.log(flag);
-    console.log(timezones);
-    console.log(population);
-    console.log(capital);
 
     const rendered = Mustache.render(countryComponent, {
       name: countryName,
@@ -49,10 +44,6 @@ function getCountry(param) {
     });
 }
 
-// GITHUB link fix
-
-console.log(/github.io/i.test(window.location.href));
-
 document.addEventListener('DOMContentLoaded', function() {
   const url = window.location.href;
   const urlParam = new URL(url);
@@ -61,11 +52,9 @@ document.addEventListener('DOMContentLoaded', function() {
   } else {
     searchComponent();
     document.querySelector('#input').addEventListener('input', function(e) {
-      console.log(e.target.value);
       document.querySelector('#output').innerHTML = '';
 
       if (e.target.value === '') {
-        console.log('No country typed in');
         document.querySelector('#output').innerHTML =
           'Type in the country name';
       } else {
