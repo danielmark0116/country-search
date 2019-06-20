@@ -1,0 +1,19 @@
+.flag {
+  width: auto;
+  max-width: 200px;
+  margin: 0;
+  display: block;
+  border-radius: 10px;
+  @include boxshadow(0.1);
+}
+
+.card-title {
+  font-size: 300%;
+}
+
+.card-subtitle {
+  font-size: 150%;
+  &.secondary {
+    font-size: 100%;
+  }
+}
