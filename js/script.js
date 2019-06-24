@@ -44,6 +44,42 @@ function getCountry(param) {
     });
 }
 
+function searchResult(searchValue) {
+  getCountry(searchValue)
+    .then(data => {
+      document.querySelector('#input').innerHTML = '';
+      const countries = [];
+      data.forEach(function(x) {
+        countries.push(x.name);
+      });
+      let allC = document.createElement('ul');
+      allC.setAttribute('class', 'list-group');
+      countries.forEach(function(x) {
+        let element = document.createElement('li');
+        element.setAttribute('class', 'list-group-item');
+        let link = document.createElement('a');
+        link.setAttribute('href', `?country=${x}`);
+        link.innerText = 'More info';
+        let par = document.createElement('p');
+        par.innerHTML = x;
+        element.appendChild(par);
+        element.appendChild(link);
+        allC.appendChild(element);
+      });
+      document.querySelector('#output').innerHTML = '';
+      document.querySelector('#output').appendChild(allC);
+    })
+    .catch(err => {
+      console.log(err);
+      document.querySelector('#output').innerHTML = 'No such country';
+    });
+  document.querySelector(
+    '#output'
+  ).innerHTML = `<div class="spinner-border text-primary" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>`;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   const url = window.location.href;
   const urlParam = new URL(url);
@@ -58,39 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('#output').innerHTML =
           'Type in the country name';
       } else {
-        getCountry(e.target.value)
-          .then(data => {
-            document.querySelector('#input').innerHTML = '';
-            const countries = [];
-            data.forEach(function(x) {
-              countries.push(x.name);
-            });
-            let allC = document.createElement('ul');
-            allC.setAttribute('class', 'list-group');
-            countries.forEach(x => {
-              let element = document.createElement('li');
-              element.setAttribute('class', 'list-group-item');
-              let link = document.createElement('a');
-              link.setAttribute('href', `?country=${x}`);
-              link.innerText = 'More info';
-              let par = document.createElement('p');
-              par.innerHTML = x;
-              element.appendChild(par);
-              element.appendChild(link);
-              allC.appendChild(element);
-            });
-            document.querySelector('#output').innerHTML = '';
-            document.querySelector('#output').appendChild(allC);
-          })
-          .catch(err => {
-            console.log(err);
-            document.querySelector('#output').innerHTML = 'No such country';
-          });
-        document.querySelector(
-          '#output'
-        ).innerHTML = `<div class="spinner-border text-primary" role="status">
-        <span class="sr-only">Loading...</span>
-    </div>`;
+        searchResult(e.target.value);
       }
     });
   }

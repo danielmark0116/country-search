@@ -3182,9 +3182,9 @@ a.text-dark:hover, a.text-dark:focus { color: #121416 !important; }
 
 body { overflow-x: hidden; }
 
-main { overflow-x: hidden; }
+main { overflow-x: hidden; overflow-y: visible; min-height: 300px; }
 
-.girland1 { position: absolute; width: 100%; height: 220px; transform: rotate(-5deg); opacity: 0.6; z-index: -1; width: 120vw; top: 0; left: -10px; background: url("../images/girland.png") no-repeat; background-size: contain; }
+.girland1 { position: absolute; width: auto; height: 250px; transform: rotate(-5deg); opacity: 0.6; z-index: -1; width: 120vw; top: -20px; left: -10px; background: url("../images/girland.png") no-repeat; background-size: contain; }
 
 input { margin: 1rem auto !important; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); }
 
